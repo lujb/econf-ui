@@ -1,0 +1,101 @@
+body {
+  padding-top: 70px;
+  font-family: Microsoft Yahei,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif;
+
+  background: -webkit-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* W3C */
+          
+}
+
+.ppp {
+  font-size: 16px;
+  border: 1px solid green;
+}
+
+.content {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px !important;
+  box-shadow: rgba(0,0,0,0.247059) 0px 1px 4px 0px;
+  /*margin-left: 30px;*/
+}
+
+.term {
+  border-radius: 8px !important;
+  box-shadow: rgba(0,0,0,0.247059) 0px 1px 4px 0px;
+}
+
+.term-value {
+  background: #FAFAFA;
+  padding: 15px;
+}
+
+.float-right {
+  float: right;
+}
+
+.navbar-bg {
+
+  background: -webkit-linear-gradient(90deg, #1CD8D2 10%, #93EDC7 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #1CD8D2 10%, #93EDC7 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #1CD8D2 10%, #93EDC7 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #1CD8D2 10%, #93EDC7 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #1CD8D2 10%, #93EDC7 90%); /* W3C */
+}
+
+.bg-0 {
+  border-left: 3px solid #FF9;
+}
+.bg-1 {
+
+  border-left: 3px solid #96C;
+}
+.bg-2 {
+  border-left: 3px solid #F6C;
+}
+
+.list-group-item-cust {
+  background: -webkit-linear-gradient(90deg, #f0f0f0 10%, #FFFFFF 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #f0f0f0 10%, #FFFFFF 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #f0f0f0 10%, #FFFFFF 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #f0f0f0 10%, #FFFFFF 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #f0f0f0 10%, #FFFFFF 90%); /* W3C */
+        
+}
+
+.list-group-item-cust:hover,
+.list-group-item-cust:focus {
+
+  background: -webkit-linear-gradient(90deg, #dddddd 10%, #ffffff 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #dddddd 10%, #ffffff 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #dddddd 10%, #ffffff 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #dddddd 10%, #ffffff 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #dddddd 10%, #ffffff 90%); /* W3C */
+        
+}
+
+.list-group-item.active-,
+.list-group-item.active-:hover,
+.list-group-item.active-:focus {
+  background: -webkit-linear-gradient(90deg, #cccccc 10%, #eeeeee 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, #cccccc 10%, #eeeeee 90%); /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, #cccccc 10%, #eeeeee 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, #cccccc 10%, #eeeeee 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, #cccccc 10%, #eeeeee 90%); /* W3C */
+}
+
+.sep {
+  margin: 12px;
+  border-color: #DDD;
+}
+
+.gap {
+  margin-top: 4px;
+}
+
+.ace_editor { height: 400px; }
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

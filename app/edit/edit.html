@@ -1,0 +1,131 @@
+<tabset>
+  <tab heading="编辑">
+    <script type="text/ng-template" id="value.html">
+      <div ng-init="index=index+1;remove=remover(parent)" class="hello" ng-class="{'term':s.isCollapsed}">
+        <a ng-class="{'gap':$index>0,'active-':s.isCollapsed}" class="list-group-item list-group-item-cust" ng-click="s.isCollapsed = !s.isCollapsed">
+          <button ng-if="s.removable" class="btn btn-danger btn-xs" ng-click="remove($index)">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+          <strong>{{$index+1}}. {{s.title}}</strong><span ng-if="s.type[0]">({{s.type[0]}})</span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': s.isCollapsed, 'glyphicon-chevron-right': !s.isCollapsed}"></i>
+        </a>
+
+        <div collapse="!s.isCollapsed" class="term-value bg-{{index%3}}">
+          <blockquote ng-if="s.desc" ng-bind-html="trust(s.desc)"></blockquote>
+          <div ng-if="s.type[0]==='tagged-value'">
+            <div ng-if="s.val[0].type[0]==='simple-list'">
+              <div class="form-inline" ng-if="s.val[0].eletype[0] === 'string'" ng-repeat="v in s.val[0].value track by $index">
+                {{s.val[0].title}}{{$index+1}}:
+                <input type="text" ng-model="s.val[0].value[$index]" class="form-control">
+                </input>
+                <button class="btn btn-danger" ng-click="s.val[0].value.splice($index, 1)">
+                  <span class="glyphicon glyphicon-remove"></span>
+                </button>
+              </div>
+              <div ng-if="s.val[0].eletype[0]==='tuple'">
+                <div ng-repeat="s in s.val[0].value track by $index" ng-include="'value.html'">
+                </div>
+              </div>
+              <hr class="sep"/>
+              <button class="btn btn-default btn-block" ng-click="select(s.val[0])">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+            <div ng-if="s.val[0].type[0]==='list'">
+              <div ng-repeat="s in s.val[0].value track by $index" ng-include="'value.html'"></div>
+              <hr class="sep"/>
+              <button class="btn btn-default btn-block" ng-click="select(s.val[0])">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+            <div ng-if="s.val[0].type[0]==='tuple'">
+              <div ng-repeat="s in s.val[0].val" ng-include="'value.html'"></div>
+            </div>
+            <div class="form-inline" ng-if="s.val[0].type[0]==='atom'">
+              <select ng-if="s.val[0].altval" class="form-control" ng-model="s.value" ng-options="v[0] for v in s.val[0].altval">
+                <option></option>
+              </select>
+              <input ng-if="!s.val[0].altval" type="text" ng-model="s.value" class="form-control">
+            </div>
+            <div class="form-inline" ng-if="s.val[0].type[0]==='string'">
+              <input type="text" ng-model="s.value" class="form-control">
+            </div>
+            <div class="form-inline" ng-if="s.val[0].type[0]==='integer'">
+              <input type="text" ng-model="s.value" class="form-control">
+            </div>
+            <div ng-if="s.val[0].type[0]==='boolean'">
+
+              <button type="button" class="btn btn-default" ng-model="s.value" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
+                {{s.value?'Yes':'No'}}
+              </button>
+            </div>
+          </div>
+          <div ng-if="s.type[0]==='tuple'">
+            <div ng-repeat="s in s.val" ng-include="'value.html'"></div>
+          </div>
+          <div ng-if="s.type[0]==='list'">
+            <div ng-repeat="s in s.value track by $index" ng-include="'value.html'"></div>
+              <hr class="sep"/>
+              <button class="btn btn-default btn-block" ng-click="select(s)">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+            <div class="form-inline" ng-if="s.type[0]==='integer'">
+              <input type="text" ng-model="s.value" class="form-control">
+            </div>
+            <div ng-if="s.type[0]==='string'" class="form-inline">
+              <input type="text" ng-model="s.value" class="form-control">
+            </div>
+            <div ng-if="s.type[0]==='atom'" class="form-inline">
+              <input type="text" ng-model="s.value" class="form-control">
+            </div>
+            <div ng-if="s.type[0]==='boolean'">
+              <button type="button" class="btn btn-default" ng-model="s.value" btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
+                {{s.value?'Yes':'No'}}
+              </button>
+            </div>
+            <div ng-if="!s.type[0]">
+              <div ng-repeat="s in s.value" ng-include="'value.html'"></div>
+              <hr class="sep"/>
+              <button ng-if="!s.value || s.value.length<1" class="btn btn-default btn-block" ng-click="select(s)">
+                <span class="glyphicon glyphicon-plus"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/ng-template" id="alternatives.html">
+      <div class="modal-header">
+        <h3 class="modal-title">选择配置类别</h3>
+      </div>
+      <div class="modal-body">
+        <div class="list-group" >
+          <a ng-repeat="item in items" class="list-group-item" ng-class="{'active': selected.item===item}" ng-click="selected.item = item" >
+            {{item.title}}
+          </a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">确定</button>
+        <button class="btn btn-danger" ng-click="cancel()">取消</button>
+      </div>
+    </script>
+
+    <div ng-repeat="s in schema" ng-include="'value.html'"></div>
+    </div>
+  </tab>
+
+  <tab heading="预览" select="preview()">
+    <div class="panel panel-info">
+      <div class="panel-heading">{{conf}}.conf</div>
+      <div class="panel-body">
+        <div ui-ace="{useWrapMode : true, showGutter: false, theme:'github', mode: 'erlang'}" ng-model="confContent" readonly="true"></div>
+      </div>
+    </div>
+  </tab>
+
+</tabset>
+
+
