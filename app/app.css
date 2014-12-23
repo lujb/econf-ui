@@ -96,6 +96,10 @@ body {
   margin-top: 4px;
 }
 
+.footer {
+  margin-top: 40px;
+}
+
 .ace_editor { height: 400px; }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
