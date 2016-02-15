@@ -9,10 +9,14 @@ exports.start = function(cb) {
     if (err) {
       cb(err);
     } else {
-      var out = fs.openSync('report.log', 'a');
-      var err = fs.openSync('report.log', 'a');
+      var p = process.platform;
+      if (p === 'darwin' || p === 'linux') {
+        if (!/\/usr\/local\/bin/.test(process.env.PATH)) {
+          process.env.PATH += ':/usr/local/bin';
+        }
+      }
       var cmd = path.join(__dirname, 'bin', 'boot');
-      var backend = spawn(cmd, [port], {detached:true, stdio: [ 'ignore', out, err ]});
+      var backend = spawn(cmd, [port], {detached:true, stdio: [ 'ignore' ]});
       backend.unref();
       cb(null, port);
     }
